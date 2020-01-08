@@ -1,0 +1,40 @@
+<div class="container">
+  <div class="p-grid p-dir-col">
+    <div class="p-col p-col-align-end">
+      <form [formGroup]="searchForm" (ngSubmit)="search()">
+        사원번호 : <input type="text" pInputText formControlName="searchId" />
+        <p-button label="조회" icon="fa fa-search" ></p-button>
+      </form>
+    </div>
+    <div class="p-col p-col-align-center">
+      <p-fieldset legend="조회결과">
+        <form #inputForm="ngForm">
+          <div class="p-grid">
+            <div class="p-col-2">사원번호</div>
+            <div class="p-col-4"><input type="text" pInputText [(ngModel)]="emp.empNo" name="empNo" [disabled]="!bEmpNo" required /></div>
+            <div class="p-col-2">직급</div>
+            <div class="p-col-4"><p-dropdown [options]="grades" [(ngModel)]="emp.gradeCd" name="gradeCd"></p-dropdown></div>
+            <div class="p-col-2">사원명</div>
+            <div class="p-col-4"><input type="text" pInputText [(ngModel)]="emp.empNm" name="empNm"/></div>
+            <div class="p-col-2">부서</div>
+            <div class="p-col-4"><input type="text" pInputText [(ngModel)]="emp.deptNm" name="deptNm"/></div>
+            <div class="p-col-2">생년월일</div>
+            <div class="p-col-4"><p-calendar [(ngModel)]="emp.birthDate" name="birthDate" dateFormat="yy.mm.dd" [showIcon]="true" dataType="string" [timeOnly]="false"></p-calendar></div>
+            <div class="p-col-2">성별</div>
+            <div class="p-col-4">
+              <p-radioButton name="femaleYn" value="Y" label="여자" [(ngModel)]="emp.femaleYn"></p-radioButton>
+              <p-radioButton name="femaleYn" value="N" label="남자" [(ngModel)]="emp.femaleYn"></p-radioButton>
+            </div>
+          </div>
+        </form>
+      </p-fieldset>
+    </div>
+    <div class="p-col p-col-align-end">
+      <p-button label="초기화" icon="fa fa-refresh" (click)="fnInit()"></p-button>
+      <p-button label="등록"  icon="pi pi-save" (click)="fnSave()"></p-button>
+      <p-button label="수정"  icon="pi pi-save" (click)="fnUpdate()"></p-button>
+      <p-button label="삭제"  icon="pi pi-times" (click)="fnDelete()"></p-button>
+    </div>
+  </div>
+</div>
+

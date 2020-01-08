@@ -1,0 +1,124 @@
+<div class="container">
+  <div class="p-grid p-dir-row">
+    <div class="p-col-5">
+      <div class="p-grid p-dir-col">
+        <div class="p-col">
+          <p-table [value]="centers" dataKey="id" selectionMode="single" [(selection)]="selectedCenter"
+                   [scrollable]="true" scrollHeight="200px" (onRowSelect)="onRowSelect($event)">
+            <ng-template pTemplate="header">
+              <tr>
+                <th>센터코드</th>
+                <th>센터</th>
+                <th></th>
+              </tr>
+            </ng-template>
+            <ng-template pTemplate="body" let-rowData let-ri="rowIndex">
+              <tr [pSelectableRow]="rowData" [pSelectableRowIndex]="ri">
+                <td>{{rowData.centerCd}}</td>
+                <td>{{rowData.centerNm}}</td>
+                <td [ngStyle]="{'text-align': 'center'}">
+                  <button pButton type="button" icon="fa fa-ellipsis-h" class="ui-button-info" (click)="fnCenterDetail(rowData)"></button>
+                </td>
+              </tr>
+            </ng-template>
+          </p-table>
+        </div>
+        <div class="p-col p-col-align-end">
+          <p-button label="추가" icon="fa fa-plus" (click)="fnCenterAdd()"></p-button>
+        </div>
+      </div>
+    </div>
+    <div class="p-col-7">
+      <div class="p-grid p-dir-col">
+        <div class="p-col">
+          <p-table [value]="mngAreas" dataKey="id" selectionMode="single" [(selection)]="selectedMngArea"
+                   [scrollable]="true" scrollHeight="200px">
+            <ng-template pTemplate="header">
+              <tr>
+                <th>센터코드</th>
+                <th>지역코드</th>
+                <th>지역</th>
+                <th></th>
+              </tr>
+            </ng-template>
+            <ng-template pTemplate="body" let-targetData let-ri="rowIndex">
+              <tr [pSelectableRow]="targetData" [pSelectableRowIndex]="ri">
+                <td>{{targetData.centerCd}}</td>
+                <td>{{targetData.areaCd}}</td>
+                <td>{{targetData.areaNm}}</td>
+                <td [ngStyle]="{'text-align': 'center'}">
+                  <button pButton type="button" icon="fa fa-ellipsis-h" class="ui-button-info" (click)="fnMngAreaDetail(targetData)"></button>
+                </td>
+              </tr>
+            </ng-template>
+          </p-table>
+        </div>
+        <div class="p-col p-col-align-end">
+          <p-button label="추가" icon="fa fa-plus" (click)="fnMngAreaAdd()" *ngIf="selectedCenter"></p-button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<p-dialog header="센터" [(visible)]="displayDialogCenter" [focusOnShow]="false" [responsive]="true" showEffect="fade"
+          [contentStyle]="{'overflow': 'visible'}" [modal]="true" [style]="{width: '600px'}">
+  <div class="ui-g ui-fluid" *ngIf="center">
+    <div class="ui-g-12">
+      <div class="ui-g-4">
+        <label>센터코드</label>
+      </div>
+      <div class="ui-g-8">
+        <input pInputText name="empNo" [(ngModel)]="center.centerCd" [disabled]="!newCenter"/>
+      </div>
+    </div>
+    <div class="ui-g-12">
+      <div class="ui-g-4">
+        <label>센터</label>
+      </div>
+      <div class="ui-g-8">
+        <input pInputText name="empNm" [(ngModel)]="center.centerNm" />
+      </div>
+    </div>
+  </div>
+  <p-footer>
+    <div class="ui-dialog-buttonpane ui-helper-clearfix">
+      <button type="button" pButton icon="fa fa-close" (click)="fnCenterDelete()" label="Delete" *ngIf="!newCenter"></button>
+      <button type="button" pButton icon="fa fa-check" (click)="fnCenterSave()" label="Save"></button>
+    </div>
+  </p-footer>
+</p-dialog>
+<p-dialog header="관할지역" [(visible)]="displayDialogMngArea" [focusOnShow]="false" [responsive]="true" showEffect="fade"
+          [contentStyle]="{'overflow': 'visible'}" [modal]="true" [style]="{width: '600px'}">
+  <div class="ui-g ui-fluid" *ngIf="mngArea">
+    <div class="ui-g-12">
+      <div class="ui-g-4">
+        <label>센터코드</label>
+      </div>
+      <div class="ui-g-8">
+        <input pInputText name="empNo" [(ngModel)]="mngArea.centerCd" [disabled]="true"/>
+      </div>
+    </div>
+    <div class="ui-g-12">
+      <div class="ui-g-4">
+        <label>지역코드</label>
+      </div>
+      <div class="ui-g-8">
+        <input pInputText name="empNm" [(ngModel)]="mngArea.areaCd" />
+      </div>
+    </div>
+    <div class="ui-g-12">
+      <div class="ui-g-4">
+        <label>지역</label>
+      </div>
+      <div class="ui-g-8">
+        <input pInputText name="empNm" [(ngModel)]="mngArea.areaNm" />
+      </div>
+    </div>
+  </div>
+  <p-footer>
+    <div class="ui-dialog-buttonpane ui-helper-clearfix">
+      <button type="button" pButton icon="fa fa-close" (click)="fnMngAreaDelete()" label="Delete" *ngIf="!newMngArea"></button>
+      <button type="button" pButton icon="fa fa-check" (click)="fnMngAreaSave()" label="Save"></button>
+    </div>
+  </p-footer>
+</p-dialog>

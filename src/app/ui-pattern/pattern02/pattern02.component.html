@@ -1,0 +1,155 @@
+<div class="container">
+  <div class="p-grid p-dir-col">
+    <div class="p-col">
+      <div class="content-section documentation">
+        <p-table [value]="employees" dataKey="id" editMode="row">
+          <ng-template pTemplate="caption">
+            Multi data R, Single CUD
+          </ng-template>
+          <ng-template pTemplate="header">
+            <tr>
+              <th>사원번호</th>
+              <th>사원명</th>
+              <th>직급</th>
+              <th>부서</th>
+              <th>생년월일</th>
+              <th>성별</th>
+              <th></th>
+            </tr>
+          </ng-template>
+          <ng-template pTemplate="body" let-rowData let-editing="editing" let-ri="rowIndex">
+            <tr [pEditableRow]="rowData">
+              <td>
+                <p-cellEditor>
+                  <ng-template pTemplate="input">
+                    <input pInputText type="text" [(ngModel)]="rowData.empNo" required>
+                  </ng-template>
+                  <ng-template pTemplate="output">
+                    {{rowData.empNo}}
+                  </ng-template>
+                </p-cellEditor>
+              </td>
+              <td>
+                <p-cellEditor>
+                  <ng-template pTemplate="input">
+                    <input pInputText type="text" [(ngModel)]="rowData.empNm">
+                  </ng-template>
+                  <ng-template pTemplate="output">
+                    {{rowData.empNm}}
+                  </ng-template>
+                </p-cellEditor>
+              </td>
+              <td>
+                <p-cellEditor>
+                  <ng-template pTemplate="input">
+                    <p-dropdown [options]="grades" [(ngModel)]="rowData.gradeCd" name="gradeCd"></p-dropdown>
+                  </ng-template>
+                  <ng-template pTemplate="output">
+                    {{convertGrade(rowData.gradeCd)}}
+                  </ng-template>
+                </p-cellEditor>
+              </td>
+              <td>
+                <p-cellEditor>
+                  <ng-template pTemplate="input">
+                    <input pInputText type="text" [(ngModel)]="rowData.deptNm">
+                  </ng-template>
+                  <ng-template pTemplate="output">
+                    {{rowData.deptNm}}
+                  </ng-template>
+                </p-cellEditor>
+              </td>
+              <td>
+                <p-cellEditor>
+                  <ng-template pTemplate="input">
+                    <p-calendar [(ngModel)]="rowData.birthDate" name="birthDate" dateFormat="yy.mm.dd" dataType="string" [timeOnly]="false"></p-calendar>
+                  </ng-template>
+                  <ng-template pTemplate="output">
+                    {{rowData.birthDate}}
+                  </ng-template>
+                </p-cellEditor>
+              </td>
+              <td>
+                <p-cellEditor>
+                  <ng-template pTemplate="input">
+                    <p-radioButton name="femaleYn" value="Y" label="여자" [(ngModel)]="rowData.femaleYn"></p-radioButton>
+                    <p-radioButton name="femaleYn" value="N" label="남자" [(ngModel)]="rowData.femaleYn"></p-radioButton>
+                  </ng-template>
+                  <ng-template pTemplate="output">
+                    {{convertFemaleYn(rowData.femaleYn)}}
+                  </ng-template>
+                </p-cellEditor>
+              </td>
+              <td style="text-align:center">
+                <button pButton type="button" icon="pi pi-pencil" class="ui-button-info" (click)="fnDetail(rowData)"></button>
+              </td>
+            </tr>
+          </ng-template>
+        </p-table>
+      </div>
+    </div>
+    <div class="p-col p-col-align-end">
+      <p-button label="추가" icon="fa fa-plus" (click)="fnAdd()"></p-button>
+    </div>
+  </div>
+</div>
+<p-dialog header="Employee Details" [(visible)]="displayDialog" [focusOnShow]="false" [responsive]="true" showEffect="fade" [contentStyle]="{'overflow': 'visible'}" [modal]="true" [style]="{width: '600px'}">
+  <div class="ui-g ui-fluid" *ngIf="emp">
+    <div class="ui-g-12">
+      <div class="ui-g-4">
+        <label for="empNo">사원번호</label>
+      </div>
+      <div class="ui-g-8">
+        <input pInputText name="empNo" [(ngModel)]="emp.empNo" />
+      </div>
+    </div>
+    <div class="ui-g-12">
+      <div class="ui-g-4">
+        <label for="empNm">사원명</label>
+      </div>
+      <div class="ui-g-8">
+        <input pInputText name="empNm" [(ngModel)]="emp.empNm" />
+      </div>
+    </div>
+    <div class="ui-g-12">
+      <div class="ui-g-4">
+        <label for="gradeCd">직급</label>
+      </div>
+      <div class="ui-g-8">
+        <p-dropdown [options]="grades" [(ngModel)]="emp.gradeCd" name="gradeCd"></p-dropdown>
+      </div>
+    </div>
+    <div class="ui-g-12">
+      <div class="ui-g-4">
+        <label for="color">부서</label>
+      </div>
+      <div class="ui-g-8">
+        <input pInputText name="deptNm" [(ngModel)]="emp.deptNm" />
+      </div>
+    </div>
+    <div class="ui-g-12">
+      <div class="ui-g-4">
+        <label for="color">생년월일</label>
+      </div>
+      <div class="ui-g-8">
+        <p-calendar [(ngModel)]="emp.birthDate" name="birthDate" dateFormat="yy.mm.dd" [showIcon]="true" dataType="string" [timeOnly]="false"></p-calendar>
+      </div>
+    </div>
+    <div class="ui-g-12">
+      <div class="ui-g-4">
+        <label for="color">성별</label>
+      </div>
+      <div class="ui-g-8">
+        <p-radioButton name="femaleYn" value="Y" label="여자" [(ngModel)]="emp.femaleYn"></p-radioButton>
+        <p-radioButton name="femaleYn" value="N" label="남자" [(ngModel)]="emp.femaleYn"></p-radioButton>
+      </div>
+    </div>
+  </div>
+  <p-footer>
+    <div class="ui-dialog-buttonpane ui-helper-clearfix">
+      <button type="button" pButton icon="fa fa-close" (click)="fnDelete()" label="Delete"></button>
+      <button type="button" pButton icon="fa fa-check" (click)="fnSave()" label="Save"></button>
+    </div>
+  </p-footer>
+</p-dialog>
+
