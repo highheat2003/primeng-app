@@ -1,3 +1,9 @@
 ::ng-deep .menu_item_text {
   width: 500px;
 }
+
+/* 메뉴에서 선택된 부분을 표시  */
+:host >>> .ui-state-active {
+  background-color: green;
+  font-weight: bold !important;
+}

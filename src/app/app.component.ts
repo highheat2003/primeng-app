@@ -16,15 +16,10 @@ export class AppComponent implements OnInit {
     this.items = [{
       label: '데모',
       items: [
-        {
-          label: 'helloworld', routerLink: ['/helloworld']
-        },
-        {
-          label: 'DataTable Inplace Cell Editing', routerLink: ['/books']
-        },
-        {
-          label: 'DataTable Row Editing', routerLink: ['/books-row']
-        },
+        {label: 'helloworld', routerLink: ['/helloworld']},
+        {label: 'DataTable Inplace Cell Editing', routerLink: ['/books']},
+        {label: 'DataTable Row Editing', routerLink: ['/books-row']},
+        {label: '공통모듈 테스트', routerLink: ['/common-test']},
       ]
     }, {
       label: 'UI Pattern', icon: 'fa fa-fw',
@@ -36,17 +31,6 @@ export class AppComponent implements OnInit {
         {label: 'Multi data CRUD (작업중)', styleClass : 'menu_item_text', routerLink: ['/pattern04'], icon: 'fa fa-check'},
         {label: 'Multi data CRUD, Sub Multi data CRUD per Master data row', styleClass : 'menu_item_text',
           icon: 'fa fa-check', routerLink: ['/pattern05']},
-
-        {label: 'Pattern 06 - Multi data R, Single data CUD Navigation on Subwindow', styleClass : 'menu_item_text',
-          routerLink: ['/pattern06']},
-        {label: 'Pattern 07 - Multi data R with move, Single data CUD Navigation on Subwindow', styleClass : 'menu_item_text',
-          routerLink: ['/pattern07']},
-        {label: 'Pattern 08 - Multi data CRUD, Sub Multi data CRUD per Master data row', styleClass : 'menu_item_text',
-          routerLink: ['/pattern08']},
-        {label: 'Pattern 09 - Single data CRUD, Sub Multi data CRUD', styleClass : 'menu_item_text', routerLink: ['/pattern09']},
-        {label: 'Pattern 10 - Multi data R, Master Single data CUD, Sub Multi data CRUD Master data row', styleClass : 'menu_item_text',
-          routerLink: ['/pattern10']},
-        {label: 'Pattern 11 - Dynamic Tab View', styleClass : 'menu_item_text', routerLink: ['/pattern11']}
       ]
     }];
   }

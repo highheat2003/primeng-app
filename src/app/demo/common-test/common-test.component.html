@@ -1,0 +1,7 @@
+<div class="p-grid p-dir-col">
+  <div class="p-col">
+    <button type="button" pButton label="직급 팝업" (click)="onGradePopupopen()"></button>
+    <app-common-grade-popup [display]="displayGradePopup" (returnCode)="fnReturnGrade($event)"></app-common-grade-popup>
+  </div>
+</div>
+

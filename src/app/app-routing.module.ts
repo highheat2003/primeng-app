@@ -9,12 +9,14 @@ import {Pattern02Component} from './ui-pattern/pattern02/pattern02.component';
 import {Pattern03Component} from './ui-pattern/pattern03/pattern03.component';
 import {Pattern04Component} from './ui-pattern/pattern04/pattern04.component';
 import {Pattern05Component} from './ui-pattern/pattern05/pattern05.component';
+import {CommonTestComponent} from './demo/common-test/common-test.component';
 
 
 const routes: Routes = [
   { path: 'helloworld', component: HelloworldComponent },
   { path: 'books', component: BookDataComponent },
   { path: 'books-row', component: BookDataRowComponent },
+  { path: 'common-test', component: CommonTestComponent },
   { path: 'pattern01', component: Pattern01Component },
   { path: 'pattern02', component: Pattern02Component },
   { path: 'pattern03', component: Pattern03Component },
