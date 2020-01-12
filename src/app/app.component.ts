@@ -20,6 +20,7 @@ export class AppComponent implements OnInit {
         {label: 'DataTable Inplace Cell Editing', routerLink: ['/books']},
         {label: 'DataTable Row Editing', routerLink: ['/books-row']},
         {label: '공통모듈 테스트', routerLink: ['/common-test']},
+        {label: 'Form valid', routerLink: ['/form-valid']},
       ]
     }, {
       label: 'UI Pattern', icon: 'fa fa-fw',

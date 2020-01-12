@@ -1,10 +1,10 @@
 <p-dialog header="직급" [(visible)]="display" [focusOnShow]="false" [responsive]="true" showEffect="fade"
           [contentStyle]="{'overflow': 'visible'}" [modal]="true" [style]="{width: '500px'}"
-          (close)="fnClose()">
+          (visibleChange)="fnClose()">
   <div class="ui-g ui-fluid" >
     <div class="ui-g-12">
       <p-table [value]="grades" dataKey="value" selectionMode="single" [(selection)]="selectedGrade"
-               [scrollable]="true" scrollHeight="200px" (onRowSelect)="onRowSelect($event)">
+               [scrollable]="true" scrollHeight="200px" >
         <ng-template pTemplate="header">
           <tr>
             <th>직급코드</th>

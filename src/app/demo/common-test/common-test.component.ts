@@ -19,7 +19,7 @@ export class CommonTestComponent implements OnInit {
   }
 
   fnReturnGrade($event) {
-    this.displayGradePopup = false;
+    this.displayGradePopup = false; // 필수코딩
     console.log('직급코드 : ', $event);
   }
 }

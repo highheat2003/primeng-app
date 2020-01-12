@@ -34,10 +34,6 @@ export class GradePopupComponent implements OnInit {
     this.display = false;
   }
 
-  onRowSelect($event: any) {
-    // this.display = false;
-  }
-
   onRowDblClick($event: MouseEvent, rowData) {
     this.returnCode.emit(rowData);
     this.display = false;

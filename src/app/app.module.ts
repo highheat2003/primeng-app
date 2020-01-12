@@ -30,6 +30,7 @@ import { Pattern04Component } from './ui-pattern/pattern04/pattern04.component';
 import { Pattern05Component } from './ui-pattern/pattern05/pattern05.component';
 import { CommonTestComponent } from './demo/common-test/common-test.component';
 import { GradePopupComponent } from './common/grade-popup/grade-popup.component';
+import { FormValidComponent } from './demo/form-valid/form-valid.component';
 
 @NgModule({
   declarations: [
@@ -44,7 +45,8 @@ import { GradePopupComponent } from './common/grade-popup/grade-popup.component'
     Pattern04Component,
     Pattern05Component,
     CommonTestComponent,
-    GradePopupComponent
+    GradePopupComponent,
+    FormValidComponent
   ],
   imports: [
     BrowserModule,
